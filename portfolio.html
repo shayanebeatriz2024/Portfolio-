@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Portfólio</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f3ee;
+    --card: #ffffff;
+    --border: #d8d4c8;
+    --text: #3a3830;
+    --muted: #7a776e;
+    --coral: #f4a89a;
+    --coral-light: #fde8e5;
+    --coral-dark: #c0614f;
+    --purple: #b8a9d9;
+    --purple-light: #ede8f7;
+    --purple-dark: #6b5a9e;
+    --teal: #8ecfc0;
+    --teal-light: #e0f4f0;
+    --teal-dark: #3a8c7e;
+    --amber: #f0c97a;
+    --amber-light: #fef5e0;
+    --amber-dark: #9a7020;
+    --blue: #9bbfdf;
+    --blue-light: #e4f0fa;
+    --blue-dark: #2d5f8a;
+    --green: #a8d4a0;
+    --green-light: #e8f5e5;
+    --green-dark: #3a7032;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* Fundo com linhas estilo caderno */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 31px,
+      #e8e4db 31px,
+      #e8e4db 32px
+    );
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* Header / capa */
+  .cover {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 36px 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(to bottom, var(--coral) 0%, var(--purple) 50%, var(--teal) 100%);
+    border-radius: var(--radius) 0 0 var(--radius);
+  }
+
+  .cover-inner { padding-left: 20px; }
+
+  .cover-tag {
+    display: inline-block;
+    background: var(--amber-light);
+    color: var(--amber-dark);
+    border: 1px solid var(--amber);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 14px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .cover h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .cover .subtitle {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .cover .subtitle span {
+    color: var(--teal-dark);
+    font-weight: 700;
+  }
+
+  /* Chips de tecnologia */
+  .tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1.5px solid;
+  }
+
+  .chip-coral  { background: var(--coral-light);  color: var(--coral-dark);  border-color: var(--coral);  }
+  .chip-purple { background: var(--purple-light); color: var(--purple-dark); border-color: var(--purple); }
+  .chip-teal   { background: var(--teal-light);   color: var(--teal-dark);   border-color: var(--teal);   }
+  .chip-amber  { background: var(--amber-light);  color: var(--amber-dark);  border-color: var(--amber);  }
+  .chip-blue   { background: var(--blue-light);   color: var(--blue-dark);   border-color: var(--blue);   }
+  .chip-green  { background: var(--green-light);  color: var(--green-dark);  border-color: var(--green);  }
+
+  /* Seção genérica */
+  .section {
+    margin-bottom: 20px;
+  }
+
+  .section-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: var(--border);
+    border-radius: 2px;
+  }
+
+  /* Cards de links (contatos) */
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+  }
+
+  .link-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .link-card .icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .link-card .info { display: flex; flex-direction: column; }
+  .link-card .info span { font-size: 11px; font-weight: 400; opacity: 0.7; }
+
+  .lc-green  { background: var(--green-light);  color: var(--green-dark);  border-color: var(--green);  }
+  .lc-green .icon  { background: var(--green);  }
+  .lc-blue   { background: var(--blue-light);   color: var(--blue-dark);   border-color: var(--blue);   }
+  .lc-blue .icon   { background: var(--blue);   }
+  .lc-teal   { background: var(--teal-light);   color: var(--teal-dark);   border-color: var(--teal);   }
+  .lc-teal .icon   { background: var(--teal);   }
+  .lc-purple { background: var(--purple-light); color: var(--purple-dark); border-color: var(--purple); }
+  .lc-purple .icon { background: var(--purple); }
+
+  /* Cards de projetos */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.18s, box-shadow 0.18s;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .project-header {
+    height: 8px;
+  }
+
+  .project-body {
+    padding: 18px 18px 14px;
+  }
+
+  .project-emoji {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .project-title {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .project-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+
+  .project-footer {
+    border-top: 1px solid var(--border);
+    padding: 10px 18px;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .project-link {
+    font-weight: 700;
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  /* Bloco de sobre mim */
+  .about-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--coral) 0%, var(--purple) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+    border: 3px solid var(--card);
+    box-shadow: 0 0 0 2px var(--border);
+  }
+
+  .about-text h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    margin-bottom: 4px;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* Progresso de estudos */
+  .progress-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .progress-item {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-name {
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .progress-pct { font-size: 13px; font-weight: 700; }
+
+  .progress-bar-bg {
+    height: 8px;
+    border-radius: 10px;
+    background: var(--bg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s ease;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--muted);
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1.5px dashed var(--border);
+  }
+
+  /* Animação de entrada */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .cover        { animation: fadeUp 0.5s ease both; }
+  .section:nth-of-type(1) { animation: fadeUp 0.5s 0.1s ease both; }
+  .section:nth-of-type(2) { animation: fadeUp 0.5s 0.2s ease both; }
+  .section:nth-of-type(3) { animation: fadeUp 0.5s 0.3s ease both; }
+  .section:nth-of-type(4) { animation: fadeUp 0.5s 0.4s ease both; }
+  .section:nth-of-type(5) { animation: fadeUp 0.5s 0.5s ease both; }
+
+  @media (max-width: 520px) {
+    .cover h1 { font-size: 36px; }
+    .about-card { flex-direction: column; }
+    .links-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-tag">📁 portfólio / 2025</div>
+      <h1>Olá, eu sou<br>Shayane Beatriz ✨</h1>
+      <p class="subtitle">Desenvolvedora Full Stack em formação · <span>apaixonada por criar</span></p>
+      <div class="tech-chips">
+        <span class="chip chip-coral">🌐 HTML</span>
+        <span class="chip chip-purple">🎨 CSS</span>
+        <span class="chip chip-teal">⚡ JavaScript</span>
+        <span class="chip chip-amber">☕ Spring Boot</span>
+        <span class="chip chip-blue">🗄️ SQL</span>
+        <span class="chip chip-green">🤖 n8n</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOBRE MIM -->
+  <div class="section">
+    <div class="section-label">📝 sobre mim</div>
+    <div class="about-card">
+      <div class="avatar">👩‍💻</div>
+      <div class="about-text">
+        <h2>Shayane Beatriz Marques Fagundes</h2>
+        <p>Estou em transição de carreira para a área de tecnologia, estudando desenvolvimento Full Stack. Também sou empreendedora — fundadora da <strong>TECHNERD B2R</strong>, loja de produtos 3D. Apaixonada por tecnologia e por criar soluções que unem criatividade e código! 🚀</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTATO / LINKS -->
+  <div class="section">
+    <div class="section-label">🔗 me encontre por aqui</div>
+    <div class="links-grid">
+      <a href="https://wa.me/5551980657364" class="link-card lc-green" target="_blank">
+        <div class="icon">💬</div>
+        <div class="info">WhatsApp<span>TECHNERD B2R</span></div>
+      </a>
+      <a href="https://www.instagram.com/shayfagundes9/" class="link-card lc-purple" target="_blank">
+        <div class="icon">📸</div>
+        <div class="info">Instagram<span>@shayfagundes9</span></div>
+      </a>
+      <a href="https://www.linkedin.com/feed/" class="link-card lc-teal" target="_blank">
+        <div class="icon">💼</div>
+        <div class="info">LinkedIn<span>perfil profissional</span></div>
+      </a>
+      <a href="https://github.com/shayanebeatriz2024" class="link-card lc-blue" target="_blank">
+        <div class="icon">🐙</div>
+        <div class="info">GitHub<span>shayanebeatriz2024</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- PROJETOS -->
+  <div class="section">
+    <div class="section-label">🚀 projetos</div>
+    <div class="projects-grid">
+
+      <a href="#" class="project-card" target="_blank">
+        <div class="project-header" style="background: linear-gradient(90deg, var(--coral), var(--amber));"></div>
+        <div class="project-body">
+          <span class="project-emoji">🖨️</span>
+          <div class="project-title">TECHNERD B2R</div>
+          <div class="project-desc">Loja de produtos 3D criada com paixão por tecnologia. Design, impressão e entrega de produtos personalizados.</div>
+          <div class="project-tags">
+            <span class="project-tag chip-coral">Loja Online</span>
+            <span class="project-tag chip-amber">Produtos 3D</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span>🌐 ver loja</span>
+          <span class="project-link" style="color: var(--coral-dark);">acessar →</span>
+        </div>
+      </a>
+
+      <a href="#" class="project-card" target="_blank">
+        <div class="project-header" style="background: linear-gradient(90deg, var(--purple), var(--blue));"></div>
+        <div class="project-body">
+          <span class="project-emoji">📋</span>
+          <div class="project-title">Projeto 2</div>
+          <div class="project-desc">Descrição do seu segundo projeto. Substitua com o que você criou no curso!</div>
+          <div class="project-tags">
+            <span class="project-tag chip-coral">HTML</span>
+            <span class="project-tag chip-purple">CSS</span>
+            <span class="project-tag chip-teal">JS</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span>🐙 github</span>
+          <span class="project-link" style="color: var(--purple-dark);">ver código →</span>
+        </div>
+      </a>
+
+      <a href="#" class="project-card" target="_blank">
+        <div class="project-header" style="background: linear-gradient(90deg, var(--teal), var(--green));"></div>
+        <div class="project-body">
+          <span class="project-emoji">✨</span>
+          <div class="project-title">Projeto 3</div>
+          <div class="project-desc">Mais um projeto incrível que você vai criar ao longo do curso. Em breve! 🚧</div>
+          <div class="project-tags">
+            <span class="project-tag chip-teal">Em breve</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span>🔒 em desenvolvimento</span>
+          <span class="project-link" style="color: var(--teal-dark);">coming soon →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- PROGRESSO DE ESTUDOS -->
+  <div class="section">
+    <div class="section-label">📚 jornada de estudos</div>
+    <div class="progress-list">
+      <div class="progress-item">
+        <div class="progress-top">
+          <div class="progress-name"><span class="chip chip-coral" style="padding:3px 10px;font-size:12px;">🌐 HTML</span></div>
+          <span class="progress-pct" style="color:var(--coral-dark);">em andamento</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" style="width:20%; background: linear-gradient(90deg, var(--coral), var(--amber));"></div>
+        </div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-top">
+          <div class="progress-name"><span class="chip chip-purple" style="padding:3px 10px;font-size:12px;">🎨 CSS</span></div>
+          <span class="progress-pct" style="color:var(--purple-dark);">em andamento</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" style="width:20%; background: linear-gradient(90deg, var(--purple), var(--blue));"></div>
+        </div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-top">
+          <div class="progress-name"><span class="chip chip-amber" style="padding:3px 10px;font-size:12px;">☕ Java Básico</span></div>
+          <span class="progress-pct" style="color:var(--amber-dark);">em andamento</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" style="width:20%; background: linear-gradient(90deg, var(--amber), var(--coral));"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    feito com 💛 por Shayane Beatriz · 2025
+  </div>
+
+</div>
+</body>
+</html>
